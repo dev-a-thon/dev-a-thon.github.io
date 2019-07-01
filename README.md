@@ -8,7 +8,7 @@
 * Clone your forked repo locally.
 
 ```
-$ git clone git@github.com:yourname/dev-a-thon.github.io.git
+$ git clone https://github.com/dev-a-thon/dev-a-thon.github.io.git
 ```
 
 * Don't modify or work on the master branch, we'll use it to always be in sync with the upstream.
