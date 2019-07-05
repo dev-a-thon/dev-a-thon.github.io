@@ -14,7 +14,7 @@ $ git clone https://github.com/dev-a-thon/dev-a-thon.github.io.git
 * Don't modify or work on the master branch, we'll use it to always be in sync with the upstream.
 
 ```
-$ git remote add upstream git@github.com:dev-a-thon/dev-a-thon.github.io.git
+$ git remote add upstream https://github.com/dev-a-thon/dev-a-thon.github.io.git
 $ git fetch upstream
 ```
 
