@@ -15,6 +15,54 @@
 
     <!-- Stylesheet -->
     <link rel="stylesheet" href="style.css">
+    <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script>
+    // Cache selectors
+var lastId,
+ topMenu = $("#nav"),
+ topMenuHeight = topMenu.outerHeight()+1,
+ // All list items
+ menuItems = topMenu.find("a"),
+ // Anchors corresponding to menu items
+ scrollItems = menuItems.map(function(){
+   var item = $($(this).attr("href"));
+    if (item.length) { return item; }
+ });
+
+// Bind click handler to menu items
+// so we can get a fancy scroll animation
+menuItems.click(function(e){
+  var href = $(this).attr("href"),
+      offsetTop = href === "#" ? 0 : $(href).offset().top-topMenuHeight+1;
+  $('html, body').stop().animate({ 
+      scrollTop: offsetTop
+  }, 850);
+  e.preventDefault();
+});
+
+// Bind to scroll
+$(window).scroll(function(){
+   // Get container scroll position
+   var fromTop = $(this).scrollTop()+topMenuHeight;
+   
+   // Get id of current scroll item
+   var cur = scrollItems.map(function(){
+     if ($(this).offset().top < fromTop)
+       return this;
+   });
+   // Get the id of the current element
+   cur = cur[cur.length-1];
+   var id = cur && cur.length ? cur[0].id : "";
+   
+   if (lastId !== id) {
+       lastId = id;
+       // Set/remove active class
+       menuItems
+         .parent().removeClass("active")
+         .end().filter("[href=#"+id+"]").parent().addClass("active");
+   }                   
+});
+</script>
 
 </head>
 
@@ -50,16 +98,17 @@
                         <div class="classynav">
                             <ul id="nav">
                                 <li class="active"><a href="">Home</a></li>
-                                <li><a href="speakers.html">About</a></li>
-                                <li><a href="blog.html">Schedule</a></li>
-                                <li><a href="blog.html">Prizes</a></li>
-                                <li><a href="contact.html">Sponsors</a></li>
+                                <li><a href="#about">About</a></li>
+                                <li><a href="#schedule">Schedule</a></li>
+                                <li><a href="#prize">Prizes</a></li>
+                                <li><a href="#contact">Contact</a></li>
                             </ul>
 
                             <!-- Get Tickets Button -->
-                            <a href="#" class="btn confer-btn mt-3 mt-lg-0 ml-3 ml-lg-5">Register Now! <i class="zmdi zmdi-long-arrow-right"></i></a>
+                            <a href="#" class="btn confer-btn mt-3 mt-lg-0 ml-3 ml-lg-5">Coming Soon! <i class="zmdi zmdi-long-arrow-right"></i></a>
+
                         </div>
-                        <!-- Nav End -->
+                                                <!-- Nav End -->
                     </div>
                 </nav>
             </div>
@@ -144,7 +193,7 @@
 
 
     <!-- Our Schedule Area Start -->
-    <section class="our-schedule-area bg-img bg-gradient-overlay section-padding-100" style="background-color: black;">
+    <section class="our-schedule-area bg-img bg-gradient-overlay section-padding-100" style="background-image: url(img/bg-img/keyboard.jpg)" id="schedule">
         <div class="container">
             <div class="row">
                 <!-- Heading -->
@@ -161,14 +210,14 @@
     <!-- Our Schedule Area End -->
 
     <!-- Our Ticket Pricing Table Area Start -->
-    <section class="our-ticket-pricing-table-area section-padding-100-0 jarallax" style="background-color: black;">
+    <section class="our-ticket-pricing-table-area section-padding-100-0 jarallax" style="background-color: black;" id="prize">
         <div class="container">
             <div class="row">
                 <!-- Heading -->
                 <div class="col-12">
                     <div class="section-heading text-center wow fadeInUp" data-wow-delay="300ms">
-                        <p>Choose a Ticket</p>
-                        <h4>Ticket Pricing</h4>
+                        <p>Maybe you could be the one to win our</p>
+                        <h4>Event Prizes</h4>
                     </div>
                 </div>
             </div>
@@ -177,20 +226,19 @@
                 <!-- Single Ticket Pricing Table -->
                 <div class="col-12 col-lg-4">
                     <div class="single-ticket-pricing-table text-center mb-100 wow fadeInUp" data-wow-delay="300ms">
-                        <h6 class="ticket-plan">1 day pass</h6>
+                        <h6 class="ticket-plan">1<sup>st</sup>Prize</h6>
                         <!-- Ticket Icon -->
                         <div class="ticket-icon">
                             <img src="img/core-img/p1.png" alt="">
                         </div>
-                        <h2 class="ticket-price"><span>$</span>59</h2>
-                        <a href="#" class="btn confer-btn w-100 mb-30">Get Tickets <i class="zmdi zmdi-long-arrow-right"></i></a>
+                        <h2 class="ticket-price"><span>₹</span>15,000</h2>
                         <!-- Ticket Pricing Table Details -->
-                        <div class="ticket-pricing-table-details">
+                        <div class="ticket-pricing-table-details"><!---
                             <p><i class="zmdi zmdi-check"></i> One Day Conference Ticket</p>
                             <p><i class="zmdi zmdi-check"></i> Coffee-break</p>
                             <p><i class="zmdi zmdi-check"></i> Lunch and Networking</p>
                             <p><i class="zmdi zmdi-check"></i> Keynote talk</p>
-                            <p><i class="zmdi zmdi-check"></i> Talk to the Editors Session</p>
+                            <p><i class="zmdi zmdi-check"></i> Talk to the Editors Session</p>--->
                         </div>
                     </div>
                 </div>
@@ -198,20 +246,19 @@
                 <!-- Single Ticket Pricing Table -->
                 <div class="col-12 col-md-6 col-lg-4">
                     <div class="single-ticket-pricing-table active text-center mb-100 wow fadeInUp" data-wow-delay="300ms">
-                        <h6 class="ticket-plan">Full pass</h6>
+                        <h6 class="ticket-plan">2<sup>nd</sup>Prize</h6>
                         <!-- Ticket Icon -->
                         <div class="ticket-icon">
                             <img src="img/core-img/p2.png" alt="">
                         </div>
-                        <h2 class="ticket-price"><span>$</span>99</h2>
-                        <a href="#" class="btn confer-btn w-100 mb-30">Get Tickets <i class="zmdi zmdi-long-arrow-right"></i></a>
+                        <h2 class="ticket-price"><span>₹</span>10,000</h2>
                         <!-- Ticket Pricing Table Details -->
-                        <div class="ticket-pricing-table-details">
+                        <div class="ticket-pricing-table-details"><!---
                             <p><i class="zmdi zmdi-check"></i> One Day Conference Ticket</p>
                             <p><i class="zmdi zmdi-check"></i> Coffee-break</p>
                             <p><i class="zmdi zmdi-check"></i> Lunch and Networking</p>
                             <p><i class="zmdi zmdi-check"></i> Keynote talk</p>
-                            <p><i class="zmdi zmdi-check"></i> Talk to the Editors Session</p>
+                            <p><i class="zmdi zmdi-check"></i> Talk to the Editors Session</p>--->
                         </div>
                     </div>
                 </div>
@@ -219,31 +266,43 @@
                 <!-- Single Ticket Pricing Table -->
                 <div class="col-12 col-md-6 col-lg-4">
                     <div class="single-ticket-pricing-table text-center mb-100 wow fadeInUp" data-wow-delay="300ms">
-                        <h6 class="ticket-plan">Group pass</h6>
+                        <h6 class="ticket-plan">3<sup>rd</sup>Prize</h6>
                         <!-- Ticket Icon -->
                         <div class="ticket-icon">
                             <img src="img/core-img/p3.png" alt="">
                         </div>
-                        <h2 class="ticket-price"><span>$</span>199</h2>
-                        <a href="#" class="btn confer-btn w-100 mb-30">Get Tickets <i class="zmdi zmdi-long-arrow-right"></i></a>
+                        <h2 class="ticket-price"><span>₹</span>5,000</h2>
                         <!-- Ticket Pricing Table Details -->
-                        <div class="ticket-pricing-table-details">
+                        <div class="ticket-pricing-table-details"><!---
                             <p><i class="zmdi zmdi-check"></i> One Day Conference Ticket</p>
                             <p><i class="zmdi zmdi-check"></i> Coffee-break</p>
                             <p><i class="zmdi zmdi-check"></i> Lunch and Networking</p>
                             <p><i class="zmdi zmdi-check"></i> Keynote talk</p>
-                            <p><i class="zmdi zmdi-check"></i> Talk to the Editors Session</p>
+                            <p><i class="zmdi zmdi-check"></i> Talk to the Editors Session</p>--->
                         </div>
                     </div>
                 </div>
             </div>
+            <div class="row">
+                <!-- Heading -->
+                <div class="col-12">
+                    <div class="section-heading text-center wow fadeInUp" data-wow-delay="300ms">
+                        <a href="#" class="btn confer-btn btn-block">Coming Soon! <i class="zmdi zmdi-long-arrow-right"></i></a><br><br>
+                        <span style="color:white;">Terms and Conditions Apply</span>
+                    </div>
+               
+                </div>
+            </div>
+
+
+
         </div>
     </section>
     <!-- Our Ticket Pricing Table Area End -->
 
  
     <!-- Our Sponsors Area Start -->
-    <section class="our-speaker-area bg-gradient-overlay bg-img section-padding-100-60" style="background-image: url(img/bg-img/3.jpg);">
+    <section class="our-speaker-area bg-gradient-overlay bg-img section-padding-100-60" style="background-image: url(img/bg-img/3.jpg);" id="sponsors">
         <div class="container">
             <div class="row">
                 <!-- Heading -->
@@ -322,7 +381,7 @@
     
 
     <!-- Contact Area Start -->
-    <section class="contact-our-area section-padding-100-0" style="background-color: black;">
+    <section class="contact-our-area section-padding-100-0" style="background-color: black;" id="contact">
         <div class="container">
             <div class="row">
                 <!-- Heading -->
@@ -371,6 +430,7 @@
                             <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+<p>Icons made by <a href="https://www.freepik.com/" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/"                 title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/"                 title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></p>
                         </div>
                     </div>
                     <!-- Footer Menu -->
