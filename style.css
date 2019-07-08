@@ -130,7 +130,7 @@ ul {
     top: 0;
     left: 0;
     z-index: -1;
-    background-color: rgba(0, 0, 0, 0.4); }
+    background-color: rgb(25, 23, 33,0.6); }
 
 .bg-gradient-overlay {
   position: relative;
@@ -712,7 +712,7 @@ input:required {
 
 /* :: 7.0 Header Area CSS */
 .classy-nav-container {
-  background-color: transparent;
+  background-color: rgb(25, 23, 33,0.6);
   padding: 0; }
   .classy-nav-container .classy-navbar {
     -webkit-transition-duration: 500ms;
