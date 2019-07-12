@@ -144,9 +144,9 @@ ul {
     left: 0;
     z-index: -1;
     background: #ffffff;
-    background-image: -moz-linear-gradient(120deg, #df42b1 0%, #090c38 100%);
-    background-image: -webkit-linear-gradient(120deg, #df42b1 0%, #090c38 100%);
-    background-image: -ms-linear-gradient(120deg, #df42b1 0%, #090c38 100%);
+    background-image: -moz-linear-gradient(120deg, #5c1d4a 0%, #020208 100%);
+    background-image: -webkit-linear-gradient(120deg, #5c1d4a 0%, #020208 100%);
+    background-image: -ms-linear-gradient(120deg, #5c1d4a 0%, #020208 100%);
     opacity: 0.9; }
 
 .bg-gradient-overlay-2 {
@@ -2276,7 +2276,7 @@ input:required {
       border-bottom: none; }
       .our-schedule-area .schedule-tab .nav-tabs .nav-item .nav-link {
         color: #9293bc;
-        background-color: #1f2371;
+        background-color: #5c1d4a;
         text-align: center;
         border-radius: 0;
         font-size: 18px;
