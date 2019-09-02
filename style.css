@@ -2767,3 +2767,11 @@ input:required {
         margin-right: 3px; }
 
 /*# sourceMappingURL=style.css.map */
+.takshak{
+    width:250px;
+    cursor: pointer;
+    padding-top: 150px;
+    padding-right: 50px;
+    position: relative;
+}
+

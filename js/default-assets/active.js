@@ -225,10 +225,13 @@
     // :: 13.0 Countdown Active Code
     // ****************************
     if ($.fn.countdown) {
-        $("#clock").countdown("2019/09/28", function (event) {
-            $(this).html(event.strftime("<div>%m <span>Months</span></div> <div>%d <span>Days</span></div> <div>%H <span>Hours</span></div> <div>%M <span>Minutes</span></div> <div>%S <span>Seconds</span></div>"));
+        $("#clock").countdown("09/28/2019", function (event) {
+            $(this).html(event.strftime(" <div>%d <span>Days</span></div> <div>%H <span>Hours</span></div> <div>%M <span>Minutes</span></div> <div>%S <span>Seconds</span></div>"));
         });
     }
+    
+    
+    
 
     // ****************************
     // :: 13.0 Scrollup Active Code
